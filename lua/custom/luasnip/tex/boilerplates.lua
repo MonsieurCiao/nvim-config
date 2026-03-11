@@ -17,49 +17,49 @@ return {
     },
     fmta(
       [[
-				\documentclass[12pt]{article}
+\documentclass[12pt]{article}
 
-				\usepackage{breqn}
+\usepackage{breqn}
 \usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry} 
-				\usepackage{amsmath,amsthm,amssymb,enumitem}
-				\usepackage[german,english]{babel}
-				\usepackage{tensor}
-				\usepackage{graphicx}
-				\usepackage{pgfplots}
-				\pgfplotsset{width=10cm,compat=1.9}
-				\usepackage{esint}
-				\usepackage[T1]{fontenc}
-				\usepackage{mathtools}
-				\usepackage{siunitx}
-				\newenvironment{ex}[2][Exercise]{\begin{trivlist}
-				\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\usepackage{amsmath,amsthm,amssymb,enumitem}
+\usepackage[german,english]{babel}
+\usepackage{tensor}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepackage{esint}
+\usepackage[T1]{fontenc}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\newenvironment{ex}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
 
-				\newenvironment{sol}[1][Solution]{\begin{trivlist}
-				\item[\hskip \labelsep {\bfseries #1:}]}{\end{trivlist}}
+\newenvironment{sol}[1][Solution]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1:}]}{\end{trivlist}}
 
-				\newcommand{\meq}{\overset{!}{=}}
-				\DeclarePairedDelimiter\bra{\langle}{\rvert}
-				\DeclarePairedDelimiter\ket{\lvert}{\rangle}
-				\DeclarePairedDelimiterX\brk[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
-				\DeclareSIUnit\angstrom{\text {Å}}
+\newcommand{\meq}{\overset{!}{=}}
+\DeclarePairedDelimiter\bra{\langle}{\rvert}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}
+\DeclarePairedDelimiterX\brk[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
+\DeclareSIUnit\angstrom{\text {Å}}
 
-				%DECLARATION OF DELIMITERS%
+%DECLARATION OF DELIMITERS%
 
-				\DeclarePairedDelimiter\vb{\lvert}{\rvert}
-				\DeclarePairedDelimiter\rb{(}{)}
-				\DeclarePairedDelimiter\sqrb{[}{]}
-				\DeclarePairedDelimiter\cb{\{}{\}}
-				\DeclarePairedDelimiter\ab{\langle}{\rangle}
-				\DeclarePairedDelimiter\db{\|}{\|}
+\DeclarePairedDelimiter\vb{\lvert}{\rvert}
+\DeclarePairedDelimiter\rb{(}{)}
+\DeclarePairedDelimiter\sqrb{[}{]}
+\DeclarePairedDelimiter\cb{\{}{\}}
+\DeclarePairedDelimiter\ab{\langle}{\rangle}
+\DeclarePairedDelimiter\db{\|}{\|}
 
 
-				\begin{document}
-				\noindent <> \hfill \today \\[30pt]
-				\centerline{ \Large{ \textbf{ <> }}}
+\begin{document}
+\noindent <> \hfill \today \\[30pt]
+\centerline{ \Large{ \textbf{ <> }}}
 
-				<>
+<>
 
-				\end{document}
+\end{document}
 			]],
       { i(1, 'Lukas'), i(2, 'Title of the homework'), i(0) }
     )

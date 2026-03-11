@@ -82,6 +82,16 @@ return {
       { i(1), i(2) }
     )
   ),
+  s(
+    { trig = 'ls', descr = 'list', wordTrig = false },
+    fmta(
+      [[
+\begin{itemize}
+  \item <>
+      ]],
+      { i(1) }
+    )
+  ),
   s({ trig = '--', snippetType = 'autosnippet', dscr = 'item', wordTrig = false }, { t '\\item' }),
 
   s({ trig = 'emph', dscr = 'emphasize', wordTrig = false }, fmta('\\emph{<>}', { i(1) })),
