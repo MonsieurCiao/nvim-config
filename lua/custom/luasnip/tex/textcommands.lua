@@ -88,6 +88,7 @@ return {
       [[
 \begin{itemize}
   \item <>
+\end{itemize}
       ]],
       { i(1) }
     )

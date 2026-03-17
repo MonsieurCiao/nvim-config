@@ -9,6 +9,4 @@ local d = ls.dynamic_node
 local fmt = require('luasnip.extras.fmt').fmt
 local fmta = require('luasnip.extras.fmt').fmta
 local rep = require('luasnip.extras').rep
-return {
-  s({ trig = 'helloworld', snippetType = 'snippet', desc = 'A hello world snippet', wordTrig = true }, { t "Just a hint of what's to come" }),
-}
+return {}

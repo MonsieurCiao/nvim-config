@@ -169,13 +169,13 @@ return {
   ),
 
   s(
-    { trig = 'bint', snippetType = 'autosnippet', priority = 1001, dscr = 'Bound integral. ', wordTrig = false },
+    { trig = 'oint', snippetType = 'autosnippet', priority = 1001, dscr = 'Bound integral. ', wordTrig = false },
     fmta('\\oint_{<>} {<>} \\,d <>', { i(1), i(2), i(3) }),
     { condition = in_mathzone }
   ),
 
   s(
-    { trig = 'bbint', snippetType = 'autosnippet', priority = 1002, dscr = 'Bound double integral. ', wordTrig = false },
+    { trig = 'ooint', snippetType = 'autosnippet', priority = 1002, dscr = 'Bound double integral. ', wordTrig = false },
     fmta('\\varoiint_{<>} {<>} \\,d <> \\,d <>', { i(1), i(2), i(3), i(4) }),
     { condition = in_mathzone }
   ),

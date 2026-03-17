@@ -121,6 +121,9 @@ end)
 -- Enable break indent
 vim.o.breakindent = true
 
+--spellcheck
+vim.opt.spelllang = { 'en_us' }
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -161,11 +164,15 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 
+--tabstops
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+
 -- if performing an operation that would fail due to unsaved changes in the buffer (like `:q`),
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-vim.g.python3_host_prog = '/opt/homebrew/bin/python3'
+vim.g.python3_host_prog = vim.fn.expand '~/.venvs/neovim/bin/python'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -178,7 +185,12 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 --code actions
-vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
+-- vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
+--hover
+vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover)
+
+--oil action
+vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -254,6 +266,10 @@ require('lazy').setup({
   {
     'NMAC427/guess-indent.nvim',
     opts = {
+      auto_cmd = true,
+      on_tab_options = {
+        ['expandtab'] = true,
+      },
       on_space_options = { -- A table of vim options when spaces are detected
         ['expandtab'] = true,
         ['tabstop'] = 'detected', -- If the option value is 'detected', The value is set to the automatically detected indent size.
@@ -513,7 +529,16 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       -- Mason must be loaded before its dependents so we need to set it up here.
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
-      { 'mason-org/mason.nvim', opts = { ensure_installed = { 'prettier', 'prettierd', 'tailwindcss-language-server', 'eslint-lsp' } } },
+      {
+        'mason-org/mason.nvim',
+        opts = {
+          ensure_installed = { 'prettier', 'prettierd', 'tailwindcss-language-server', 'eslint-lsp' },
+          registries = {
+            'github:mason-org/mason-registry',
+            'github:Crashdummyy/mason-registry',
+          },
+        },
+      },
       'mason-org/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -742,6 +767,7 @@ require('lazy').setup({
         },
         clangd = {},
         cmake = {},
+        -- ... your other servers (lua_ls, etc.)
       }
 
       -- Ensure the servers and tools above are installed
@@ -776,6 +802,23 @@ require('lazy').setup({
             require('lspconfig')[server_name].setup(server)
           end,
         },
+      }
+
+      -- setup and init shader tools
+      local configs = require 'lspconfig.configs'
+      if not configs.shader_tools then
+        configs.shader_tools = {
+          default_config = {
+            cmd = { '/Users/stellarc/.vscode/extensions/timgjones.hlsltools-1.1.303/bin/osx-x64/ShaderTools.LanguageServer' },
+            filetypes = { 'hlsl', 'shader', 'cginc' },
+            root_dir = require('lspconfig.util').root_pattern('.git', 'ProjectSettings', 'Assets'),
+            settings = {},
+          },
+        }
+      end
+
+      require('lspconfig').shader_tools.setup {
+        capabilities = capabilities,
       }
     end,
   },
@@ -1051,7 +1094,8 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  require 'kickstart.plugins.neo-tree',
+  -- require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.oil',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`

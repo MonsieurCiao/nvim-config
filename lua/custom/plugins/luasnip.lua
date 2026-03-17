@@ -6,6 +6,9 @@ return {
   config = function()
     require('luasnip.loaders.from_lua').lazy_load { paths = './lua/custom/luasnip/' }
     local ls = require 'luasnip'
+    -- ls.filetype_extend('typescriptreact', { 'typescript' })
+    ls.filetype_extend('cs', { 'unity' })
+    require('luasnip.loaders.from_vscode').lazy_load()
     ls.setup {
       update_events = { 'TextChanged', 'TextChangedI' },
       enable_autosnippets = true,
