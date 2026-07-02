@@ -9,11 +9,13 @@ return {
     local npairs = require 'nvim-autopairs'
     local Rule = require 'nvim-autopairs.rule'
     local cond = require 'nvim-autopairs.conds'
-
     npairs.setup {}
-
     npairs.add_rule(Rule("'", "'"):with_pair(function(opts)
-      return vim.bo.filetype ~= 'scheme'
+      local disabled = {
+        scheme = true,
+        rust = true,
+      }
+      return not disabled[vim.bo.filetype]
     end))
   end,
 }

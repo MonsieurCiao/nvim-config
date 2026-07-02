@@ -1,3 +1,4 @@
+-- startup page configuration
 return {
   'goolord/alpha-nvim',
   config = function()

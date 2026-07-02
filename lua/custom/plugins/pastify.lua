@@ -22,7 +22,7 @@ return {
       ft = { -- Custom snippets for different filetypes, will replace $IMG$ with the image url
         html = '<img src="$IMG$" alt="">',
         markdown = '![]($IMG$)',
-        tex = [[\includegraphics[width=\linewidth]{$IMG$}]],
+        tex = [[\includegraphics[width=5cm]{$IMG$}]],
         css = 'background-image: url("$IMG$");',
         js = 'const img = new Image(); img.src = "$IMG$";',
         xml = '<image src="$IMG$" />',

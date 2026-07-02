@@ -1,4 +1,6 @@
-return { 'Olical/conjure' }
+-- for lisp languages
+-- return { 'Olical/conjure' }
+return {}
 -- return {
 --   {
 --     'Olical/conjure',

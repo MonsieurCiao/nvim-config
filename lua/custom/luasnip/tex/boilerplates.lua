@@ -29,6 +29,7 @@ return {
 \pgfplotsset{width=10cm,compat=1.9}
 \usepackage{esint}
 \usepackage[T1]{fontenc}
+\usepackage[version=4]{mhchem}
 \usepackage{mathtools}
 \usepackage{siunitx}
 \newenvironment{ex}[2][Exercise]{\begin{trivlist}
@@ -61,7 +62,7 @@ return {
 
 \end{document}
 			]],
-      { i(1, 'Lukas'), i(2, 'Title of the homework'), i(0) }
+      { i(1, 'L. Chao'), i(2, 'Title of the homework'), i(0) }
     )
   ),
 

@@ -264,10 +264,6 @@ return {
     )
   ),
 
-  s({ trig = 'itm', snippetType = 'autosnippet', dscr = 'Adds an item for a list.', wordTrig = false }, {
-    t '\\item ',
-  }),
-
   -- BRACKETS, PARENTHESES, AND DELIMITERS (NOTE: these snippets are used with the boilerplate \declarePairedDelimiter definitions.
   -- If you would rather use the snippet version that does not require loading the \DeclarePairedDelimiter commands, then comment the uncommented, and uncomment the commented within this section
 

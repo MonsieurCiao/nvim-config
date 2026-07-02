@@ -93,6 +93,17 @@ return {
       { i(1) }
     )
   ),
+  s(
+    { trig = 'lsn', descr = 'list', wordTrig = false },
+    fmta(
+      [[
+\begin{enumerate}
+  \item <>
+\end{enumerate}
+      ]],
+      { i(1) }
+    )
+  ),
   s({ trig = '--', snippetType = 'autosnippet', dscr = 'item', wordTrig = false }, { t '\\item' }),
 
   s({ trig = 'emph', dscr = 'emphasize', wordTrig = false }, fmta('\\emph{<>}', { i(1) })),
