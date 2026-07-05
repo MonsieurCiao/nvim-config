@@ -16,25 +16,28 @@ return {
     end)
     set({ 'n', 'x' }, '<leader><up>', function()
       mc.lineSkipCursor(-1)
-    end)
+    end, { desc = 'Skip cursor up' }) -- Description added here
+
     set({ 'n', 'x' }, '<leader><down>', function()
       mc.lineSkipCursor(1)
-    end)
+    end, { desc = 'Skip cursor down' })
 
     -- Add or skip adding a new cursor by matching word/selection
     set({ 'n', 'x' }, '<leader>n', function()
       mc.matchAddCursor(1)
-    end)
-    set({ 'n', 'x' }, '<leader>s', function()
+    end, { desc = 'cursor next match' })
+
+    set({ 'n', 'x' }, '<leader>m', function()
       mc.matchSkipCursor(1)
-    end)
+    end, { desc = 'Skip next' })
+
     set({ 'n', 'x' }, '<leader>N', function()
       mc.matchAddCursor(-1)
-    end)
-    set({ 'n', 'x' }, '<leader>S', function()
-      mc.matchSkipCursor(-1)
-    end)
+    end, { desc = 'previous match' })
 
+    set({ 'n', 'x' }, '<leader>M', function()
+      mc.matchSkipCursor(-1)
+    end, { desc = 'Skip previous' })
     -- Add and remove cursors with control + left click.
     set('n', '<c-leftmouse>', mc.handleMouse)
     set('n', '<c-leftdrag>', mc.handleMouseDrag)

@@ -6,6 +6,9 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- find python3
+vim.g.python3_host_prog = vim.fn.expand '~/.venvs/neovim/bin/python'
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -16,6 +19,7 @@ vim.g.have_nerd_font = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
 vim.o.relativenumber = true
+vim.o.number = true
 vim.o.syntax = 'on'
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -37,7 +41,7 @@ vim.o.breakindent = true
 vim.g.loaded_autopairs = 1
 
 --spellcheck
-vim.opt.spelllang = { 'en_us' }
+vim.opt.spelllang = { 'en_us', 'de' }
 
 -- Save undo history
 vim.o.undofile = true
@@ -87,7 +91,6 @@ vim.opt.shiftwidth = 2
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-vim.g.python3_host_prog = vim.fn.expand '~/.venvs/neovim/bin/python'
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -97,15 +100,12 @@ vim.g.python3_host_prog = vim.fn.expand '~/.venvs/neovim/bin/python'
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 --code actions
 -- vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action' })
 --hover
 vim.keymap.set('n', '<leader>ch', vim.lsp.buf.hover)
-
---oil action
-vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -115,12 +115,6 @@ vim.keymap.set('n', '-', '<cmd>Oil<CR>')
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -129,12 +123,6 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
-
--- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
--- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- vim.keymap.set("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -183,7 +171,7 @@ require('lazy').setup({
     opts = {
       auto_cmd = true,
       on_tab_options = {
-        ['expandtab'] = true,
+        ['expandtab'] = false,
       },
       on_space_options = { -- A table of vim options when spaces are detected
         ['expandtab'] = true,
@@ -308,6 +296,7 @@ require('lazy').setup({
       spec = {
         { '<leader>s', group = '[S]earch' },
         { '<leader>t', group = '[T]oggle' },
+        { '<leader>x', group = 'Fi[X]es' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -735,6 +724,13 @@ require('lazy').setup({
       require('lspconfig').shader_tools.setup {
         capabilities = capabilities,
       }
+
+      vim.lsp.config['gdscript'] = {
+        capabilities = capabilities,
+        -- connects to godot's built-in LSP server
+        cmd = vim.lsp.rpc.connect('127.0.0.1', 6005),
+      }
+      vim.lsp.enable 'gdscript'
     end,
   },
 
@@ -975,6 +971,7 @@ require('lazy').setup({
         'tsx',
         'css',
         'json',
+        'gdscript',
       },
       -- Autoinstall languages that are not installed
       auto_install = true,
@@ -1010,7 +1007,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.autopairs',
   -- require 'kickstart.plugins.neo-tree',
-  require 'kickstart.plugins.oil',
   -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
@@ -1044,6 +1040,29 @@ require('lazy').setup({
     },
   },
 })
+
+-- godot setup
+-- paths to check for project.godot file
+local paths_to_check = { '/', '/../' }
+local is_godot_project = false
+local godot_project_path = ''
+local cwd = vim.fn.getcwd()
+
+-- iterate over paths and check
+for key, value in pairs(paths_to_check) do
+  if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
+    is_godot_project = true
+    godot_project_path = cwd .. value
+    break
+  end
+end
+
+-- check if server is already running in godot project path
+local is_server_running = vim.uv.fs_stat(godot_project_path .. '/server.pipe')
+-- start server, if not already running
+if is_godot_project and not is_server_running then
+  vim.fn.serverstart(godot_project_path .. '/server.pipe')
+end
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
