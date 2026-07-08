@@ -41,7 +41,7 @@ vim.o.breakindent = true
 vim.g.loaded_autopairs = 1
 
 --spellcheck
-vim.opt.spelllang = { 'en_us', 'de' }
+vim.opt.spelllang = { 'en_us', 'de_de' }
 
 -- Save undo history
 vim.o.undofile = true
@@ -135,6 +135,15 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
   callback = function()
     vim.hl.on_yank()
+  end,
+})
+
+-- autocmd to run :SoftPen when opening .md files
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'markdown',
+  callback = function()
+    vim.cmd 'SoftPen'
+    vim.cmd 'setlocal spell'
   end,
 })
 
@@ -410,6 +419,16 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+
+      -- Shortcut for searching obsidian:memory
+      vim.keymap.set('n', '<leader>sm', function()
+        builtin.find_files { cwd = '/Users/stellarc/Library/Mobile Documents/iCloud~md~obsidian/Documents/memory/' }
+      end, { desc = '[S]earch [M]emory' })
+
+      -- Shortcut for searching obsidian:politics
+      vim.keymap.set('n', '<leader>sp', function()
+        builtin.find_files { cwd = '/Users/stellarc/Library/Mobile Documents/iCloud~md~obsidian/Documents/politics/' }
+      end, { desc = '[S]earch [P]olitics' })
     end,
   },
 
@@ -948,31 +967,33 @@ require('lazy').setup({
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    branch = 'master',
+    branch = 'main',
     lazy = false,
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
+    init = function()
+      require('nvim-treesitter.install').prefer_git = true
+    end,
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = {
-        'bash',
-        'c',
-        'cmake',
-        'diff',
-        'html',
-        'lua',
-        'luadoc',
-        'markdown',
-        'markdown_inline',
-        'query',
-        'vim',
-        'vimdoc',
-        'javascript',
-        'typescript',
-        'tsx',
-        'css',
-        'json',
-        'gdscript',
-      },
+      -- ensure_installed = {
+      --   'bash',
+      --   'c',
+      --   'cmake',
+      --   'diff',
+      --   'html',
+      --   'lua',
+      --   'luadoc',
+      --   'markdown',
+      --   'markdown_inline',
+      --   'query',
+      --   'vim',
+      --   'vimdoc',
+      --   'javascript',
+      --   'typescript',
+      --   'tsx',
+      --   'css',
+      --   'json',
+      --   'gdscript',
+      -- },
       -- Autoinstall languages that are not installed
       auto_install = true,
       ignore_install = { 'latex' },

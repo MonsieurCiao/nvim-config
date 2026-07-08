@@ -1,0 +1,21 @@
+-- image viewing
+return {
+  -- 'folke/snacks.nvim',
+  -- dependencies = {
+  --   'obsidian-nvim/obsidian.nvim',
+  -- },
+  -- opts = {
+  --   image = {
+  --     enabled = true,
+  --     resolve = function(path, src)
+  --       local ok, api = pcall(require, 'obsidian.api')
+  --       if not ok then
+  --         return
+  --       end
+  --       if api.path_is_note(path) then
+  --         return api.resolve_attachment_path(src)
+  --       end
+  --     end,
+  --   },
+  -- },
+}
