@@ -43,7 +43,7 @@ return {
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}
 \DeclarePairedDelimiterX\brk[2]{\langle}{\rangle}{#1\,\delimsize\vert\,\mathopen{}#2}
 \DeclareSIUnit\angstrom{\text {Å}}
-
+\newtheorem{definition}{Definition}
 %DECLARATION OF DELIMITERS%
 
 \DeclarePairedDelimiter\vb{\lvert}{\rvert}
@@ -77,6 +77,7 @@ return {
 			\usepackage{amsmath}
 			\usepackage{amsthm}
 			\usepackage{amssymb}
+      \usepackage{multicol}
 			\usepackage{tensor}
 			\newtheorem{thm}{Theorem}
 			\usepackage[english]{babel}

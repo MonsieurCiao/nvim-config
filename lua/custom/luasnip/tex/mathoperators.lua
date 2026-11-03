@@ -32,6 +32,9 @@ local in_mathzone = function()
   -- The `in_mathzone` function requires the VimTeX plugin
   return vim.fn['vimtex#syntax#in_mathzone']() == 1
 end
+ls.setup {
+  enable_autosnippets = true,
+}
 
 return {
 
@@ -69,6 +72,7 @@ return {
     fmta('\\frac{<>}{<>}', { i(1), i(2) }),
     { condition = in_mathzone }
   ),
+  s({ trig = 'tt', snippetType = 'autosnippet', dscr = 'fraction operator', wordTrig = false }, fmta('\\frac', {}), { condition = in_mathzone }),
 
   s(
     { trig = 'tff', snippetType = 'autosnippet', priority = 1001, dscr = 'total derivative operator', wordTrig = false },
@@ -229,6 +233,16 @@ return {
   s({ trig = 'do', snippetType = 'autosnippet', dscr = 'center dot', wordTrig = false }, {
     t '\\cdot',
   }, { condition = in_mathzone }),
+  s({
+    trig = '*',
+    snippetType = 'autosnippet',
+    dscr = 'center dot',
+    wordTrig = false,
+  }, {
+    t '\\cdot',
+  }, {
+    condition = in_mathzone,
+  }),
 
   s({ trig = 'inf', snippetType = 'autosnippet', dscr = 'Infinity', wordTrig = false }, {
     t '\\infty',
@@ -270,6 +284,10 @@ return {
     t '\\Leftrightarrow',
   }, { condition = in_mathzone }),
 
+  s({ trig = 'mapsto', snippetType = 'autosnippet', dscr = 'mapsto', wordTrig = false }, {
+    t '\\mapsto',
+  }, { condition = in_mathzone }),
+
   s({ trig = 'perp', snippetType = 'autosnippet', dscr = 'perpendicular symbol', wordTrig = false }, {
     t '\\perp',
   }, { condition = in_mathzone }),
@@ -301,6 +319,28 @@ return {
   s({ trig = 'in', priority = 900, dscr = 'in', wordTrig = false }, {
     t '\\in',
   }, { condition = in_mathzone }),
+  s({ trig = 'notin', priority = 1001, dscr = 'in', wordTrig = false }, {
+    t '\\notin',
+  }, { condition = in_mathzone }),
+
+  s({ trig = 'wo', priority = 900, dscr = 'without', wordTrig = false }, {
+    t '\\textbackslash',
+  }, { condition = in_mathzone }),
+  s({ trig = 'sub', priority = 1001, dscr = 'subset', wordTrig = false }, {
+    t '\\subset',
+  }, { condition = in_mathzone }),
+  s({ trig = 'nsub', priority = 1001, dscr = 'not subset', wordTrig = false }, {
+    t '\\not\\subset',
+  }, { condition = in_mathzone }),
+  s({ trig = 'sup', priority = 1001, dscr = 'supset', wordTrig = false }, {
+    t '\\supset',
+  }, { condition = in_mathzone }),
+  s({ trig = 'or', priority = 1001, dscr = 'logical or', wordTrig = false }, {
+    t '\\cup',
+  }, { condition = in_mathzone }),
+  s({ trig = 'and', priority = 1001, dscr = 'logical and', wordTrig = false }, {
+    t '\\cap',
+  }, { condition = in_mathzone }),
 
   s({ trig = 'Re', snippetType = 'autosnippet', dscr = 'Real numbers', wordTrig = false }, {
     t '\\Re',
@@ -309,6 +349,17 @@ return {
   s({ trig = 'Im', snippetType = 'autosnippet', dscr = 'Imaginary numbers', wordTrig = false }, {
     t '\\Im',
   }, { condition = in_mathzone }),
+
+  s(
+    { trig = 'set', snippetType = 'autosnippet', priority = 1001, dscr = 'Define a set', wordTrig = false },
+    fmta('<> = \\{<>\\}', { i(1), i(2) }),
+    { condition = in_mathzone }
+  ),
+  s(
+    { trig = 'se', snippetType = 'autosnippet', priority = 1001, dscr = 'quick define a set', wordTrig = false },
+    fmta('\\{<>\\}', { i(1) }),
+    { condition = in_mathzone }
+  ),
 
   s({ trig = 'sR', snippetType = 'autosnippet', dscr = 'The set of real numbers.', wordTrig = false }, {
     t '\\mathbb{R}',
@@ -453,18 +504,6 @@ return {
   s(
     { trig = 'cos', snippetType = 'autosnippet', priority = 1000, dscr = 'cos function', wordTrig = false },
     fmta('\\cos<> ', { i(1) }),
-    { condition = in_mathzone }
-  ),
-
-  s(
-    { trig = 'tan', snippetType = 'autosnippet', priority = 1000, dscr = 'tan function', wordTrig = false },
-    fmta('\\tan<> ', { i(1) }),
-    { condition = in_mathzone }
-  ),
-
-  s(
-    { trig = 'hsin', snippetType = 'autosnippet', priority = 1001, dscr = 'hyperbolic sin function', wordTrig = false },
-    fmta('\\sinh<> ', { i(1) }),
     { condition = in_mathzone }
   ),
 

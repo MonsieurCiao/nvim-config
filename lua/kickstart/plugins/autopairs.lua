@@ -12,10 +12,12 @@ return {
     npairs.setup {}
     npairs.add_rule(Rule("'", "'"):with_pair(function(opts)
       local disabled = {
+        markdown = true,
         scheme = true,
         rust = true,
       }
       return not disabled[vim.bo.filetype]
     end))
+    npairs.add_rule(Rule('$', '$', 'typst'))
   end,
 }

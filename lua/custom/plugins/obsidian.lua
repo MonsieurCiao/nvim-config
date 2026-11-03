@@ -35,7 +35,7 @@ return {
       pattern = 'ObsidianNoteEnter',
       callback = function(ev)
         -- remove the default mappings
-        vim.keymap.del('n', '<CR>', { buffer = true })
+        -- vim.keymap.del('n', '<CR>', { buffer = true })
         -- vim.keymap.del('n', ']o', { buffer = true })
         -- vim.keymap.del('n', '[o', { buffer = true })
 

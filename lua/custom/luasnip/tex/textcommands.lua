@@ -12,7 +12,7 @@ local rep = require('luasnip.extras').rep
 return {
 
   -- Use typewriter font.
-  s({ trig = 'tt', dscr = "Expands 'tt' into '\texttt{}'", wordTrig = false }, fmta('\\texttt{<>}', { i(1) })),
+  -- s({ trig = 'tt', dscr = "Expands 'tt' into '\texttt{}'", wordTrig = false }, fmta('\\texttt{<>}', { i(1) })),
 
   -- Insert a line break (\\)
   s({ trig = 'bk', snippetType = 'autosnippet', dscr = 'Insert a line break.', wordTrig = false }, { t '\\\\' }),
@@ -131,4 +131,7 @@ return {
       { i(1) }
     )
   ),
+
+  -- text
+  s({ trig = 'bspw', snippetType = 'autosnippet', descr = 'beispielsweise', wordTrig = false }, { t 'beispielsweise' }),
 }

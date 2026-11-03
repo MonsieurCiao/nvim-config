@@ -39,7 +39,7 @@ return {
 
   -- nxn Matrix
   s(
-    { trig = 'nxn', snippetType = 'autosnippet', dscr = 'Creates an nxn matrix', wordTrig = false },
+    { trig = 'mnxn', snippetType = 'autosnippet', dscr = 'Creates an nxn matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -53,7 +53,7 @@ return {
 
   -- 1x2 Matrix
   s(
-    { trig = '1x2', snippetType = 'autosnippet', dscr = 'Creates a 1x2 matrix', wordTrig = false },
+    { trig = 'm1x2', snippetType = 'autosnippet', dscr = 'Creates a 1x2 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -67,7 +67,7 @@ return {
 
   -- 1x3 Matrix
   s(
-    { trig = '1x3', snippetType = 'autosnippet', dscr = 'Creates a 1x3 matrix', wordTrig = false },
+    { trig = 'm1x3', snippetType = 'autosnippet', dscr = 'Creates a 1x3 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -81,7 +81,7 @@ return {
 
   -- 1x4 Matrix
   s(
-    { trig = '1x4', snippetType = 'autosnippet', dscr = 'Creates a 1x4 matrix', wordTrig = false },
+    { trig = 'm1x4', snippetType = 'autosnippet', dscr = 'Creates a 1x4 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -97,7 +97,7 @@ return {
 
   -- 2x1 Matrix
   s(
-    { trig = '2x1', snippetType = 'autosnippet', dscr = 'Creates a 2x1 matrix', wordTrig = false },
+    { trig = 'm2x1', snippetType = 'autosnippet', dscr = 'Creates a 2x1 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -112,7 +112,7 @@ return {
 
   -- 3x1 Matrix
   s(
-    { trig = '3x1', snippetType = 'autosnippet', dscr = 'Creates a 3x1 matrix', wordTrig = false },
+    { trig = 'm3x1', snippetType = 'autosnippet', dscr = 'Creates a 3x1 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -128,7 +128,7 @@ return {
 
   -- 4x1 Matrix
   s(
-    { trig = '4x1', snippetType = 'autosnippet', dscr = 'Creates a 4x1 matrix', wordTrig = false },
+    { trig = 'm4x1', snippetType = 'autosnippet', dscr = 'Creates a 4x1 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -147,7 +147,7 @@ return {
 
   -- 2x2 Matrix
   s(
-    { trig = '2x2', snippetType = 'autosnippet', dscr = 'Creates a 2x2 matrix', wordTrig = false },
+    { trig = 'm2x2', snippetType = 'autosnippet', dscr = 'Creates a 2x2 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -167,7 +167,7 @@ return {
 
   -- 3x3 Matrix
   s(
-    { trig = '3x3', snippetType = 'autosnippet', dscr = 'Creates a 3x3 matrix', wordTrig = false },
+    { trig = 'm3x3', snippetType = 'autosnippet', dscr = 'Creates a 3x3 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -193,7 +193,7 @@ return {
 
   -- 4x4 Matrix
   s(
-    { trig = '4x4', snippetType = 'autosnippet', dscr = 'Creates a 4x4 matrix', wordTrig = false },
+    { trig = 'm4x4', snippetType = 'autosnippet', dscr = 'Creates a 4x4 matrix', wordTrig = false },
     fmta(
       [[
 				\begin{pmatrix}
@@ -230,7 +230,7 @@ return {
 
   s(
     {
-      trig = 'u2x2',
+      trig = 'mu2x2',
       snippetType = 'autosnippet',
       priority = 1001,
       dscr = 'Creates a 2x2 unit matrix',

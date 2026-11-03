@@ -242,7 +242,7 @@ return {
   ),
 
   s(
-    { trig = 'ex', dscr = 'Adds an exercise environment', wordTrig = false },
+    { trig = 'exercise', dscr = 'Adds an exercise environment', wordTrig = false },
     fmta(
       [[
 \begin{ex}
